@@ -35,7 +35,8 @@ struct MovieListView: View {
                         .padding(.horizontal)
                         .padding(.bottom,6)
                         .shadow(radius: 5)
-
+                        .foregroundStyle(Color.black)
+                
                     // Grid de películas
                     ScrollView {
                         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 32) {
