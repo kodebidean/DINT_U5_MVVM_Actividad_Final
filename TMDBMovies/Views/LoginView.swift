@@ -14,7 +14,12 @@ struct LoginView: View {
     @State private var showError = false
 
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
+            Text("Iniciar sesión")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .padding(.top, 50)
+
             TextField("Correo", text: $email)
                 .keyboardType(.emailAddress)
                 .autocapitalization(.none)
@@ -51,8 +56,14 @@ struct LoginView: View {
                     .cornerRadius(10)
                     .padding(.horizontal)
             }
+
+            NavigationLink(destination: RegisterView()) {
+                Text("¿No tienes una cuenta? Regístrate")
+                    .foregroundColor(.blue)
+                    .padding(.top, 20)
+            }
         }
-        .navigationTitle("Iniciar sesión")
+        .padding()
     }
 }
 

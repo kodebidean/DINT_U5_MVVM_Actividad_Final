@@ -2,30 +2,22 @@
 //  ContentView.swift
 //  TMDBMovies
 //
-//  Created by user258285 on 2/28/25.
+//  Created by user258285 on 3/2/25.
 //
 
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isLoggedIn = false
-
     var body: some View {
-        Group {
-            if isLoggedIn {
-                MovieListView()
-            } else {
-                LoginView()
-            }
-        }
-        .onAppear {
-            if CoreDataManager.shared.getCurrentUser() != nil {
-                isLoggedIn = true
+        NavigationView {
+            VStack {
+                NavigationLink(destination: LoginView()) {
+                    Text("Ir a Iniciar Sesión")
+                }
+                NavigationLink(destination: RegisterView()) {
+                    Text("Ir a Registrarse")
+                }
             }
         }
     }
-}
-
-#Preview {
-    ContentView()
 }

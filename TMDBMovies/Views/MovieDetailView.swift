@@ -12,13 +12,13 @@ struct MovieDetailView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
-                // Corregimos la carga de la imagen con la URL completa
+            VStack(alignment: .leading, spacing: 16) {
+                // Imagen de la película
                 AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500/\(movie.posterPath ?? "")")) { image in
                     image.resizable()
-                        .scaledToFit()
+                        .scaledToFill()
                 } placeholder: {
-                    ProgressView() // Indicador de carga
+                    ProgressView()
                 }
                 .frame(maxWidth: .infinity, maxHeight: 400)
                 .cornerRadius(12)
@@ -29,30 +29,38 @@ struct MovieDetailView: View {
                     .font(.largeTitle)
                     .bold()
                     .padding(.horizontal)
+                    .foregroundColor(.white)
                 
-                Text("📅 Estreno: \(movie.releaseDate ?? "Desconocido")")
-                                    .foregroundColor(.gray)
-                                    .font(.subheadline)
-                                    .padding(.horizontal)
+                HStack {
+                    Text("📅 Estreno: \(movie.releaseDate ?? "Desconocido")")
+                        .foregroundColor(.brown)
+                        .font(.subheadline)
+                    
+                    Spacer()
+                    
+                    Text("⭐ \(String(format: "%.1f", movie.voteAverage ?? 0.0))")
+                        .foregroundColor(.yellow)
+                        .font(.title2)
+                }
+                .padding(.horizontal)
 
-                Text("⭐ \(String(format: "%.1f", movie.voteAverage ?? 0.0))")
-                    .foregroundColor(.yellow)
-                    .font(.title2)
-                    .padding(.horizontal)
-                
                 Text("Sinopsis")
-                    .font(.footnote)
-                    .padding(.top)
+                    .font(.headline)
+                    .padding(.top, 16)
                     .padding(.horizontal)
-                    .bold()
+                    .foregroundColor(.white)
+
                 
                 Text(movie.overview)
                     .font(.body)
                     .padding(.horizontal)
+                    .padding(.top, 8)
+                    .foregroundColor(.white)
+
             }
         }
         .navigationTitle("Detalles")
         .navigationBarTitleDisplayMode(.inline)
+        .background(Color(.darkGray))  
     }
 }
-

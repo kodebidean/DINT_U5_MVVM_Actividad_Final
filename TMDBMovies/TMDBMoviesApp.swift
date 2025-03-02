@@ -8,7 +8,6 @@
 import SwiftUI
 import FirebaseCore
 
-// AppDelegate para inicializar Firebase en SwiftUI
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
@@ -19,20 +18,23 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct TMDBMoviesApp: App {
-    // Registrar el AppDelegate para Firebase
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-
     @AppStorage("isLoggedIn") var isLoggedIn = false  // Controla la autenticación global
+
+    init() {
+        if CoreDataManager.shared.getCurrentUser() != nil {
+            isLoggedIn = true  // Si hay un usuario en CoreData, inicia sesión automáticamente
+        }
+    }
 
     var body: some Scene {
         WindowGroup {
-            if isLoggedIn {
-                NavigationView {
-                    MovieListView()  // Muestra la lista de películas si está logueado
-                }
-            } else {
-                NavigationView {
-                    LoginView()  // Muestra el login si no está logueado
+            // Mueve el NavigationView al nivel superior
+            NavigationView {
+                if isLoggedIn {
+                    MovieListView()
+                } else {
+                    LoginView()
                 }
             }
         }

@@ -16,25 +16,31 @@ struct RegisterView: View {
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
-        VStack {
-            Text("Registro")
+        VStack(spacing: 20) {
+            Text("Registrarse")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-                .padding()
+                .padding(.top, 50)
 
-            TextField("Email", text: $email)
+            TextField("Correo", text: $email)
                 .keyboardType(.emailAddress)
                 .autocapitalization(.none)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
+                .background(Color(.systemGray6))
+                .cornerRadius(10)
+                .padding(.horizontal)
 
             SecureField("Contraseña", text: $password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
+                .background(Color(.systemGray6))
+                .cornerRadius(10)
+                .padding(.horizontal)
 
-            SecureField("Confirmar Contraseña", text: $confirmPassword)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+            SecureField("Confirmar contraseña", text: $confirmPassword)
                 .padding()
+                .background(Color(.systemGray6))
+                .cornerRadius(10)
+                .padding(.horizontal)
 
             if let errorMessage = errorMessage {
                 Text(errorMessage)
@@ -44,17 +50,22 @@ struct RegisterView: View {
 
             Button(action: register) {
                 Text("Registrarse")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
+                    .bold()
                     .frame(maxWidth: .infinity)
-                    .background(Color.green)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
                     .cornerRadius(10)
                     .padding(.horizontal)
             }
+
+            Button("¿Ya tienes una cuenta? Inicia sesión") {
+                presentationMode.wrappedValue.dismiss()
+            }
+            .foregroundColor(.blue)
+            .padding(.top, 20)
         }
         .padding()
-        .ignoresSafeArea(.keyboard, edges: .bottom) // Previene los errores del teclado
     }
 
     private func register() {
@@ -65,10 +76,11 @@ struct RegisterView: View {
 
         authViewModel.register(email: email, password: password) { success in
             if success {
-                presentationMode.wrappedValue.dismiss() // Cierra la vista después de registrar
+                presentationMode.wrappedValue.dismiss()
             } else {
                 errorMessage = authViewModel.loginErrorMessage
             }
         }
     }
 }
+

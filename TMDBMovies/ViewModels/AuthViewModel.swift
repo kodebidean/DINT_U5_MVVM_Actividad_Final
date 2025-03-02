@@ -9,15 +9,15 @@ import SwiftUI
 import FirebaseAuth
 
 class AuthViewModel: ObservableObject {
-    @Published var isUserLoggedOut = false
+    @AppStorage("isLoggedIn") var isLoggedIn = false  // 🔥 Maneja el estado global de autenticación
     @Published var loginErrorMessage: String?
-    
+
     func login(email: String, password: String, completion: @escaping (Bool) -> Void) {
         FirebaseAuthManager.shared.login(email: email, password: password) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success:
-                    self.isUserLoggedOut = false
+                    self.isLoggedIn = true
                     completion(true)
                 case .failure(let error):
                     self.loginErrorMessage = error.localizedDescription
@@ -32,7 +32,7 @@ class AuthViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success:
-                    self.isUserLoggedOut = false
+                    self.isLoggedIn = true
                     completion(true)
                 case .failure(let error):
                     self.loginErrorMessage = error.localizedDescription
@@ -45,7 +45,7 @@ class AuthViewModel: ObservableObject {
     func logout() {
         FirebaseAuthManager.shared.logout()
         DispatchQueue.main.async {
-            self.isUserLoggedOut = true
+            self.isLoggedIn = false
         }
     }
 }
