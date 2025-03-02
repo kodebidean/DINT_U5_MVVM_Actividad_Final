@@ -17,12 +17,11 @@ struct MovieDetailView: View {
                 AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500/\(movie.posterPath ?? "")")) { image in
                     image.resizable()
                         .scaledToFill()
+                        .frame(maxWidth: .infinity, maxHeight: 400)
+                        .cornerRadius(12)
                 } placeholder: {
                     ProgressView()
                 }
-                .frame(maxWidth: .infinity, maxHeight: 400)
-                .cornerRadius(12)
-                .padding()
 
                 // Información de la película
                 Text(movie.title)
@@ -30,14 +29,14 @@ struct MovieDetailView: View {
                     .bold()
                     .padding(.horizontal)
                     .foregroundColor(.white)
-                
+
                 HStack {
                     Text("📅 Estreno: \(movie.releaseDate ?? "Desconocido")")
                         .foregroundColor(.brown)
                         .font(.subheadline)
-                    
+
                     Spacer()
-                    
+
                     Text("⭐ \(String(format: "%.1f", movie.voteAverage ?? 0.0))")
                         .foregroundColor(.yellow)
                         .font(.title2)
@@ -50,17 +49,16 @@ struct MovieDetailView: View {
                     .padding(.horizontal)
                     .foregroundColor(.white)
 
-                
                 Text(movie.overview)
                     .font(.body)
                     .padding(.horizontal)
                     .padding(.top, 8)
                     .foregroundColor(.white)
-
             }
         }
         .navigationTitle("Detalles")
         .navigationBarTitleDisplayMode(.inline)
-        .background(Color(.darkGray))  
+        .background(Color(.darkGray))
     }
 }
+
