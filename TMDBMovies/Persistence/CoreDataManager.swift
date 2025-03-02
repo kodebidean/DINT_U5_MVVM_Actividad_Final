@@ -2,7 +2,7 @@
 //  CoreDataManager.swift
 //  TMDBMovies
 //
-//  Created by user258285 on 3/1/25.
+//  Created by Imanol MU on 3/1/25.
 //
 
 import CoreData
@@ -34,7 +34,7 @@ class CoreDataManager {
         }
     }
 
-    /// 💾 Guardar usuario en CoreData
+    /// Guardar usuario en CoreData
     func saveUser(email: String, uid: String) {
         let context = persistentContainer.viewContext
         let user = UserEntity(context: context)
@@ -43,13 +43,13 @@ class CoreDataManager {
 
         do {
             try context.save()
-            print("✅ Usuario guardado en CoreData")
+            print("💾 Usuario guardado en CoreData")
         } catch {
             print("❌ Error guardando usuario en CoreData: \(error)")
         }
     }
 
-    /// ❌ Eliminar usuario de CoreData (Logout)
+    /// Eliminar usuario de CoreData (Logout)
     func deleteUser() {
         let context = persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()

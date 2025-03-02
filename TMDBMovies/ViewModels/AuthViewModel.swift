@@ -2,14 +2,14 @@
 //  AuthViewModel.swift
 //  TMDBMovies
 //
-//  Created by user258285 on 3/1/25.
+//  Created by Imanol MU on 3/1/25.
 //
 
 import SwiftUI
 import FirebaseAuth
 
 class AuthViewModel: ObservableObject {
-    @AppStorage("isLoggedIn") var isLoggedIn = false  // 🔥 Maneja el estado global de autenticación
+    @AppStorage("isLoggedIn") var isLoggedIn = false  // Maneja el estado global de autenticación
     @Published var loginErrorMessage: String?
 
     func login(email: String, password: String, completion: @escaping (Bool) -> Void) {

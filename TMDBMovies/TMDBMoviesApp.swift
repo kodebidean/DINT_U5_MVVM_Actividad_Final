@@ -2,7 +2,7 @@
 //  TMDBMoviesApp.swift
 //  TMDBMovies
 //
-//  Created by user258285 on 2/28/25.
+//  Created by Imanol MU on 2/28/25.
 //
 
 import SwiftUI
@@ -29,6 +29,7 @@ struct TMDBMoviesApp: App {
 
     var body: some Scene {
         WindowGroup {
+            
             // Mueve el NavigationView al nivel superior
             NavigationView {
                 if isLoggedIn {

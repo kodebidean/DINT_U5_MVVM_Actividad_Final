@@ -2,7 +2,7 @@
 //  MovieViewModel.swift
 //  TMDBMovies
 //
-//  Created by user258285 on 3/1/25.
+//  Created by Imanol MU on 3/1/25.
 //
 
 import Foundation

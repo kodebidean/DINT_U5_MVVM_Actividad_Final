@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  TMDBMovies
 //
-//  Created by user258285 on 3/2/25.
+//  Created by Imanol MU on 3/2/25.
 //
 
 import SwiftUI
