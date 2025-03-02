@@ -1,0 +1,39 @@
+		# Xcode
+DerivedData/
+xcuserdata/
+*.xcworkspace
+*.xcuserstate
+*.xcscmblueprint
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+
+# Swift Package Manager
+/.swiftpm
+/Package.resolved
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Checkouts
+Carthage/Build
+
+# Firebase
+GoogleService-Info.plist
+
+# Swift Playgrounds
+timeline.xctimeline
+
+# Logs
+*.log
+*.swp
+*.swo
+*.swn
+
+# Temporary files
+.DS_Store
+*.tmp
+
+# Claves sensibles
+Secrets.swift
